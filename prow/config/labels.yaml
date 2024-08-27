@@ -121,6 +121,32 @@ default:
       target: prs
       prowPlugin: wip
       addedBy: prow
+    - name: do-not-merge/blocked-paths
+      color: "e11d21"
+      target: both
+    - name: do-not-merge/cherry-pick-not-approved
+      color: "e11d21"
+      target: both
+    - name: do-not-merge/needs-linked-issue
+      color: "e11d21"
+      target: both
+    - name: do-not-merge/needs-tests-checked
+      color: "e11d21"
+      target: prs
+    - name: do-not-merge/invalid-title
+      color: "e11d21"
+      target: prs
+    - name: do-not-merge/needs-triage-completed
+      color: "d93f0b"
+      target: both
+    - name: do-not-merge/release-note-label-needed
+      color: "e11d21"
+      description:
+        Indicates that a PR should not merge because it's missing one of the
+        release note labels.
+      target: prs
+      prowPlugin: release-note
+      addedBy: prow
     - name: needs-rebase
       color: "e11d21"
       description:
@@ -909,6 +935,8 @@ repos:
         prowPlugin: ti-community-label
         isExternalPlugin: true
         addedBy: anyone
+  tikv/tikv:
+    labels: [] # using global default labels.
   pingcap/community:
     labels:
       - name: sig/diagnosis
@@ -2715,32 +2743,6 @@ repos:
         color: "0366d6"
         description: Pull requests that update a dependency file
         target: both
-      - name: do-not-merge/blocked-paths
-        color: "e11d21"
-        target: both
-      - name: do-not-merge/cherry-pick-not-approved
-        color: "e11d21"
-        target: both
-      - name: do-not-merge/needs-linked-issue
-        color: "e11d21"
-        target: both
-      - name: do-not-merge/needs-tests-checked
-        color: "e11d21"
-        target: prs
-      - name: do-not-merge/invalid-title
-        color: "e11d21"
-        target: prs
-      - name: do-not-merge/needs-triage-completed
-        color: "d93f0b"
-        target: both
-      - name: do-not-merge/release-note-label-needed
-        color: "e11d21"
-        description:
-          Indicates that a PR should not merge because it's missing one of the
-          release note labels.
-        target: prs
-        prowPlugin: release-note
-        addedBy: prow
       - name: duplicate
         color: "cccccc"
         target: both
@@ -3278,7 +3280,6 @@ repos:
         prowPlugin: ti-community-label
         isExternalPlugin: true
         addedBy: anyone
-
       - name: severity/critical
         color: "fbca04"
         description: This is a critical bug.
